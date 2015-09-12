@@ -1,19 +1,4 @@
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
 }
 
 if (Meteor.isServer) {
@@ -21,3 +6,21 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+Router.route('/', function ()
+{
+	this.render('home');
+});
+
+Router.route('/post1');
+
+Router.route('/post2');
+
+// given a url like "/post/5"
+Router.route('/post/:_id', function ()
+{
+	var params = this.params; // { _id: "5" }
+	var id = params._id; // "5"
+	console.log(id);
+});
+
