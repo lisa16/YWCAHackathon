@@ -1,4 +1,8 @@
-if (Meteor.isClient) {
+Posts = new Mongo.Collection("posts");
+
+if (Meteor.isClient)
+{
+
 }
 
 if (Meteor.isServer) {
@@ -24,3 +28,17 @@ Router.route('/post/:_id', function ()
 	console.log(id);
 });
 
+Router.route('/newpost/:_id/:_question/:_answer/:_picture', function ()
+{
+	var params = this.params; // { _id: "5" }
+	var id = params._id; // "5"
+	var question = params._question;
+	var pictureBase64 = params._picture;
+	var answer = params._answer;
+	Posts.insert({
+		id: id,
+		question: question,
+		picture: pictureBase64,
+		answer: answer
+	});
+});
