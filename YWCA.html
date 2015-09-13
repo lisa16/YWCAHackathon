@@ -11,9 +11,14 @@
 </template>
 
 <template name="Post">
-	question: {{question}} <br />
-	answer: {{answer}} <br />
-	picture: {{picture}} <br />
+	{{#each posts}}
+		question: {{question}}
+		<br />
+		answer: {{answer}}
+		<br />
+		picture: {{picture}}
+		<br />
+	{{/each}}
 </template>
 
 <head>

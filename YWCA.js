@@ -29,7 +29,8 @@ Router.route('/post/:_program', function ()
 	this.render('Post', {
 		data: function ()
 		{
-			return Posts.findOne({program: program})
+			templateData = { posts: Posts.find({program: program}) };
+			return templateData;
 		}
 	})
 });
