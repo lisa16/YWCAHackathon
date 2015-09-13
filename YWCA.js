@@ -2,7 +2,34 @@ Posts = new Mongo.Collection("posts");
 
 if (Meteor.isClient)
 {
-
+	//Template.uploadFileForm.events({
+	//	'submit .new-post': function (event, template)
+	//	{
+	//		event.preventDefault();
+	//		if (window.File && window.FileReader && window.FileList && window.Blob)
+	//		{
+	//			_.each(template.find('#files').files, function (file)
+	//			{
+	//				if (file.size > 1)
+	//				{
+	//					console.log("found file with size: " + file.size);
+	//					var reader = new FileReader();
+	//					reader.onload = function (e)
+	//					{
+	//						console.log("creating file: " + file.name);
+	//						console.log("url: " + reader.result);
+	//						ImageCollection.insert({
+	//							name: file.name,
+	//							type: file.type,
+	//							dataUrl: reader.result
+	//						});
+	//					}
+	//					reader.readAsDataURL(file);
+	//				}
+	//			});
+	//		}
+	//	}
+	//});
 }
 
 if (Meteor.isServer) {
@@ -56,3 +83,4 @@ Router.route('/newpost/:_program/:_volunteer_id/:_question/:_answer/:_picture', 
 
 	console.log('new post_id: ' + post_id);
 });
+
