@@ -1,8 +1,37 @@
 Posts = new Mongo.Collection("posts");
 
-if (Meteor.isClient)
-{
+if (Meteor.isClient) {
+  Template.home.created = function() {
+    this.currentTab = new ReactiveVar("boys");
 
+    this.currentTabIs = function(tabName) {
+      return tabName === Template.instance().currentTab.get();
+    };
+  };
+
+  Template.home.helpers({
+    currentTabIs: function(tabName) {
+      return Template.instance().currentTabIs(tabName);
+    },
+    activeIfCurrentTabIs: function(tabName) {
+      console.log('activeIfCurrentTabIs ' + tabName);
+      if (Template.instance().currentTabIs(tabName)) {
+        return 'active';
+      } else {
+        return '';
+      }
+    }
+  });
+
+  Template.home.events({
+    'click .tab-link a': function(e, template) {
+      e.preventDefault();
+      var $tabLink = $(e.currentTarget);
+      var tabName = $tabLink.data('tab-name');
+      template.currentTab.set(tabName || 'boys');
+      console.log(template.currentTab);
+    }
+  });
 }
 
 if (Meteor.isServer) {
@@ -16,10 +45,6 @@ Router.route('/', function ()
 	this.render('home');
 });
 
-Router.route('/post1');
-
-Router.route('/post2');
-
 // given a url like "/post/5"
 Router.route('/post/:_program', function ()
 {
@@ -32,7 +57,7 @@ Router.route('/post/:_program', function ()
 			templateData = { posts: Posts.find({program: program}) };
 			return templateData;
 		}
-	})
+	});
 });
 
 Router.route('/newpost/:_program/:_volunteer_id/:_question/:_answer/:_picture', function ()

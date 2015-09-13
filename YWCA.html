@@ -1,14 +1,6 @@
-<template name="home">
-	<h1> This is Main Page</h1>
-</template>
-
-<template name="post1">
-	<h1> My First Post</h1>
-</template>
-
-<template name="post2">
-	<h1> My Second Post</h1>
-</template>
+<head>
+  <title>YWCA</title>
+</head>
 
 <template name="Post">
 	{{#each posts}}
@@ -21,30 +13,36 @@
 	{{/each}}
 </template>
 
-<head>
-  <title>YWCA</title>
-</head>
-
-<body>
+<template name="home">
   <ul class="nav nav-tabs">
-    <li><a href="#boys-4-real">Boys 4 Real</a></li>
-    <li><a href="#thats-just-me">That's Just Me</a></li>
-    <li><a href="#welcome-to-my-life">Welcome to MyLife</a></li>
+    <li class="tab-link"><a href="#" data-tab-name="boys">Boys 4 Real</a></li>
+    <li class="tab-link"><a href="#" data-tab-name="justme">That's Just Me</a></li>
+    <li class="tab-link"><a href="#" data-tab-name="mylife">Welcome to MyLife</a></li>
   </ul>
 
-
   <div class="tab-content">
-    <div id="boys-4-real" class="tab-pane active">
+    <div class="tab-pane {{activeIfCurrentTabIs 'boys'}}">
       Boys 4 real
     </div>
 
-    <div id="thats-just-me" class="tab-pane">
+    <div class="tab-pane {{activeIfCurrentTabIs 'justme'}}">
       That's just me
     </div>
 
-    <div id="welcome-to-my-life" class="tab-pane">
+    <div class="tab-pane {{activeIfCurrentTabIs 'mylife'}}">
       Welcome to my life
     </div>
   </div>
+</template>
 
-</body>
+<template name="post1">
+	<h1> My First Post</h1>
+</template>
+
+<template name="post2">
+	<h1> My Second Post</h1>
+</template>
+
+<template name="post">
+	Sample Posts
+</template>
