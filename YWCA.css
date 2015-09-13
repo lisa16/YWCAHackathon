@@ -1,1 +1,25 @@
 /* CSS declarations go here */
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1024px;
+  margin-top: 13px;
+}
+
+.tile-container {
+  width: 30%;
+  background-color: rgb(139, 189, 94);
+  padding: 20px;
+  margin-right: 3%;
+  color: white;
+}
+
+.form-group input {
+  width: 100%;
+}
+
+.spaced {
+  margin-bottom: 4px;
+}
