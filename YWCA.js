@@ -63,6 +63,8 @@ Router.route('/post1');
 
 Router.route('/post2');
 
+Router.route('/uploadFileForm');
+
 // given a url like "/post/5"
 Router.route('/post/:_program', function ()
 {
