@@ -11,19 +11,24 @@
 </template>
 
 <template name="Post">
+	{{> uploadFileForm}}
 	{{#each posts}}
 		question: {{question}}
 		<br />
 		answer: {{answer}}
 		<br />
-		<img src="data:image/png;base64,{{picture}}"/>
+		<img src="{{picture}}" />
 		<br />
 	{{/each}}
 </template>
 
-<template name="addNewPost">
-	<form name="new-post">
-		<input type="file" accept="image/*" />
+<template name="uploadFileForm">
+	<form class="new-post">
+		program: <input type="text" id="program"/> <br />
+		volunteer_id: <input type="text" id="volunteer_id"/> <br />
+		question: <input type="text" id="question"/> <br />
+		answer: <input type="text" id="answer" /> <br />
+		<input type="file" accept="image/*"  id="files" />
 		<input type="submit" />
 	</form>
 </template>

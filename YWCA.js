@@ -2,34 +2,50 @@ Posts = new Mongo.Collection("posts");
 
 if (Meteor.isClient)
 {
-	//Template.uploadFileForm.events({
-	//	'submit .new-post': function (event, template)
-	//	{
-	//		event.preventDefault();
-	//		if (window.File && window.FileReader && window.FileList && window.Blob)
-	//		{
-	//			_.each(template.find('#files').files, function (file)
-	//			{
-	//				if (file.size > 1)
-	//				{
-	//					console.log("found file with size: " + file.size);
-	//					var reader = new FileReader();
-	//					reader.onload = function (e)
-	//					{
-	//						console.log("creating file: " + file.name);
-	//						console.log("url: " + reader.result);
-	//						ImageCollection.insert({
-	//							name: file.name,
-	//							type: file.type,
-	//							dataUrl: reader.result
-	//						});
-	//					}
-	//					reader.readAsDataURL(file);
-	//				}
-	//			});
-	//		}
-	//	}
-	//});
+	Template.uploadFileForm.events({
+		'submit .new-post': function (event, template)
+		{
+			event.preventDefault();
+			if (window.File && window.FileReader && window.FileList && window.Blob)
+			{
+				_.each(template.find('#files').files, function (file)
+				{
+					if (file.size > 1)
+					{
+						console.log("found file with size: " + file.size);
+						var reader = new FileReader();
+						reader.onload = function (e)
+						{
+							console.log("creating file: " + file.name);
+							console.log("url: " + reader.result);
+
+							var post_id = Math.floor((Math.random() * 999999999));
+							var program = document.getElementById('program').value;
+							var volunteer_id = document.getElementById('volunteer_id').value;
+							var question = document.getElementById('question').value;
+							var answer = document.getElementById('answer').value;
+
+							Posts.insert({
+								post_id: post_id,
+								program: program,
+								volunteer_id: volunteer_id,
+								question: question,
+								answer: answer,
+								picture: reader.result
+							});
+
+							//Posts.insert({
+							//	name: file.name,
+							//	type: file.type,
+							//	dataUrl: reader.result
+							//});
+						}
+						reader.readAsDataURL(file);
+					}
+				});
+			}
+		}
+	});
 }
 
 if (Meteor.isServer) {
